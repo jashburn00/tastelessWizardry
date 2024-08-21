@@ -10,7 +10,7 @@ public class DoAll {
      *  You can fight or appease Entities by giving them stuff.
      */
     private static Scanner scanner = new Scanner(System.in);
-    private static ArrayList<String> monsterNames = new ArrayList<String>(Arrays.asList("Rabid Frog","Common Crackhead","Javier Bardem","Cursed Spartan","Minotaur","Megatroll"));
+    private static ArrayList<String> monsterNames = new ArrayList<String>(Arrays.asList("Rabid Frog","Common Crackhead","Javier Bardem","Cursed Spartan","Minotaur","Gigatroll"));
 
     public static void main(String[] args){
         
