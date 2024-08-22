@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tasteless Wizardry</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <nav>
+            <a href="https://github.com/jashburn00/" target="_blank"><div class="navbtn"><h3>Check out my GitHub!</h3></div></a>
+            <a href="https://jashburn00.github.io/WeatherWear" target="_blank"><div class="navbtn"><h3>WeatherWear</h3></div></a>
+        </nav>
+        <div class="maincontent" id="startup">
+            <h1 class="maintitle">WELCOME TO YOUR DOOM!</h1>
+
+            <form id="initialform">
+                <input type="text" id="nameInput" placeholder="Enter your character's name...">
+            </form>
+            <div class="navbtn help" onclick="showrules()"><h3>How does this work?</h3></div>
+            <div class="helpinfo" id="helpinfo">
+                <p style="margin-bottom: 20px;">
+                    You are a wizard exploring a cave in search of an ancient, very powerful, 
+                    and very valuable treasure. There are undoubtedly monsters and other foul creatures ahead!
+                    You will have to defeat each one in order to move on. <br><br> Each time 
+                    you defeat a monster, you will level up and gain the following effects: 
+                </p>
+                <ul style="margin-bottom: 40px;">
+                    <li><p style="text-align: center;">Increased maximum health</p></li>
+                    <li><p style="text-align: center;">Increased maximum mana</p></li>
+                    <li><p style="text-align: center;">Replenished health and mana</p></li>
+                </ul>
+                <p>
+                    Each time you defeat a monster, you will be given a number of random
+                    loot drops dependent on how strong the monster was. These drops can be:
+                </p>
+                <ul style="margin-bottom: 40px; margin-top: 15px;">
+                    <li><p style="text-align: center;">a weapon</p></li>
+                    <li><p style="text-align: center;">a spell</p></li>
+                    <li><p style="text-align: center;">a set of armor</p></li>
+                </ul>
+                <p>
+                    Mana recharges during battle, but beware; each monster you fight will be stronger than the last!
+                </p>
+                <div class="navbtn help" onclick="hiderules()"><h3>OK</h3></div>
+            </div>
+        </div>
+
+        <div class="maincontent" id="gameplay">
+            <div class="tooltip">
+                <h2 id="weaponname">WEAPONNAME</h2>
+                <h3 class="monsterhealth" id="weapondamage">Damage: ABCD</h3>
+            </div>
+
+            <audio id="monsterarrivalaudio" src="./soundFX/arrivalRoar.mp3"></audio>
+            <div class="monsterstats">
+                <h1 class="monstertitle">MONSTERNAME</h1>
+                <h2 class="monsterhealth">Health: ABCD</h2>
+                <h2 class="monsterhealth">Damage: ABCD</h2>
+            </div>
+            
+            <div class="playeroptions">
+                <div class="weapon" id="equippedweapon">
+                    <img src="./images/holysword.jpeg" class="equippedweapon">
+                </div>
+            </div>
+            <img src="./images/javierbardemcutout.png" class="monsterimg">
+            <img class="playerimg" src="./images/wizardcutout.png">
+        </div>
+
+    </body>
+    <footer>
+
+    </footer>
+</html>

@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+body {
+    background-image: url('./images/background.jpg');
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    overflow: hidden;
+    padding: 0px 10 10 10;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: white;
+    margin: 0 auto;
+    padding: 5px;
+    position: relative;
+}
+
+h1.maintitle {
+    top: 30%;
+    margin: 10% auto;
+    font-size: 76px;
+}
+
+nav{
+    background-color: black;
+    position: sticky;
+    margin: 0;
+    padding: 12px;
+    top: 0px;
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+    display: flex;
+}
+
+input {
+    background-color: lightgray;
+    border: 20px groove gray;
+    width: 500px;
+    height: 55px;
+    font-size: 25px;
+}
+
+form {
+    margin: 50px 50px;
+}
+
+.navbtn {
+    color: lightgray;
+    background-color: black;
+    border: 8px groove gray;
+    width: auto;
+    padding: 4px;
+    margin: 0 10px;
+}
+
+.navbtn:hover{
+    color: white;
+    background-color: black;
+    border: 8px groove rgba(166, 127, 28, 0.864);
+    cursor: pointer;
+}
+
+.navbtn.help {
+    width: 280px;
+    padding: 4px;
+    margin: 50px auto;
+    
+}
+
+
+.maincontent{
+    width: 100%;
+    height:100%;
+    text-align: center;
+    justify-content: center;
+    display: inline-block;
+}
+
+audio {
+    display: hidden;
+    position: absolute;
+}
+
+.tooltip {
+    position: absolute;
+    display: none;
+    background-color: black;
+    border: 3px groove darkgray;
+}
+
+#gameplay {
+    display: none;
+    border: 12px groove silver;
+    width: auto;
+    height:100%;
+    min-height: 100%;
+    top: 60px;
+}
+
+.playerimg {
+    position: absolute;
+    height: 690px;
+    width: 500px;
+    top: 52%;
+    left: 68%;
+    border: none;
+}
+
+.monsterimg {
+    position: absolute;
+    height: auto;
+    width: auto;
+    top: 18%;
+    left: 16%;
+}
+
+.monstertitle {
+    font-size: 78px;
+    padding: 16px;
+}
+
+.monsterhealth {
+    border: 8px groove rgba(166, 127, 28, 0.864);
+    display: inline-block;
+    width: auto;
+    padding: 10px;
+    margin: 10px;
+}
+
+.playeroptions {
+    position: absolute;
+    top: 75%;
+    border: 8px groove lightgray;
+}
+
+.equippedweapon {
+    width: 360px;
+    height: 160px;
+    cursor: pointer;
+}
+
+.optionbox.spell {
+    border: 4px solid rgb(255, 213, 0);
+    background-color: rgb(255, 240, 141);
+}
+
+a {
+    color: lightgray;
+    text-decoration: none;
+}
+
+.helpinfo {
+    position: absolute;
+    width: 50%;
+    height: auto;
+    padding: 50px;
+    top: 20%;
+    left: 22%;
+    right: 30%;
+    background-color: black;
+    border: 12px groove silver;
+    display: none;
+}
+
+p {
+    text-align: left;
+    color: lightgray;
+    font-size: 24px;
+    margin-bottom: 0px;
+}
+
+ul {
+    margin: 0px;
+    list-style: none;
+    color: white;
+    padding-left: 20px;
+}
+
+li {
+    color: lightgray;
+    padding-left: 0px;
+    text-align: center;
+}
