@@ -6,12 +6,6 @@ export class Spell {
         this.manaCost = cost;
     }
 
-    constructor(){
-        this.damage = 0;
-        this.name = "DEFAULT SPELL";
-        this.manaCost = 0;
-    }
-
     useOn(h, e){
         //default implementation
         return "DEFAULT SPELL USEON";

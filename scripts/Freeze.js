@@ -1,3 +1,5 @@
+import {Spell} from './Spell.js';
+
 export class Freeze extends Spell {
     constructor(){
         super("Freeze", 0, 45);

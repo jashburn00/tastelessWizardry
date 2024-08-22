@@ -1,3 +1,5 @@
+import {Spell} from './Spell.js';
+
 export class Bang extends Spell{
     constructor(){
         super("Bang", 30, 30);

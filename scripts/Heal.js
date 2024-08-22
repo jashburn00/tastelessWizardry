@@ -1,3 +1,5 @@
+import {Spell} from './Spell.js';
+
 export class Heal extends Spell{
     constructor(){
         super("Heal", 0, 100);

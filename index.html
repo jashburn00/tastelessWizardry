@@ -46,17 +46,29 @@
         </div>
 
         <div class="maincontent" id="gameplay">
+            <div class="navbtn help" id="mechanicsbutton"><h3>Battle Mechanics</h3></div>
             <div class="tooltipWeapon" id="tooltipWeapon">
                 <h2 id="weaponname">WEAPONNAME</h2>
                 <h3 class="monsterhealth" id="weapondamage">Damage: ABCD</h3>
             </div>
-            <div class="tooltipSpells" id="tooltipSpells">
-                <h2 id="spellname">SPELLNAME</h2>
-                <h3 class="monsterhealth" id="weapondamage">Damage: ABCD</h3>
-                <h3 class="monsterhealth" id="spellcost">Cost: ABCD</h3>
+            <div class="tooltiparmor" id="tooltiparmor">
+                <h2 id="armorname">ARMORNAME</h2>
+                <h3 class="monsterhealth" id="armorresistance">Resistance: ABCD</h3>
             </div>
-
+            <div class="helpinfo" id="mechanics">
+                <p style="margin-bottom: 20px;">
+                    Each weapon deals a different amount of damage. <br><br>Each armor resists 
+                    a different amount of damage, subtracting it directly from the damage
+                    the wearer would take. <br><br> Spells cost mana. Mana recharges slowly during
+                    battle. If you don't have enough mana, you can't cast the spell!
+                    <br><br> Monsters will always attack you, and they each have a weapon and set of
+                    armor. Monsters don't know any spells (for now >:). 
+                </p>
+                <div class="navbtn help" id="OKbutton2"><h3>OK</h3></div>
+            </div>
+            
             <audio id="monsterarrivalaudio" src="./soundFX/arrivalRoar.mp3"></audio>
+            <audio id="monsterdeathaudio" src="./soundFX/dying.mp3"></audio>
             <div class="monsterstats">
                 <h1 class="monstertitle">MONSTERNAME</h1>
                 <h2 class="monsterhealth">Health: ABCD</h2>
@@ -71,16 +83,16 @@
                     <img src="./images/spells.jpg" class="equippedweapon" id="spellimg">
                 </div>
                 <div class="weapon" id="armor">
-                    poop
+                    <img src="./images/box.PNG">
                 </div>
-                <div class="weapon" id="playerstats">
-                    <h2 style="font-size: 38px;">PLAYERNAME</h2>
+                <div class="playerstats" id="playerstats">
+                    <h2 style="font-size: 38px;" id="playername">PLAYERNAME</h2>
                     <h3 class="monsterhealth">Health: ABCD</h3>
                     <h3 class="monsterhealth">Mana: ABCD</h3>
                 </div>
             </div>
 
-            <img src="./images/javierbardemcutout.png" class="monsterimg">
+            <img src="./images/frogcutout.png" class="monsterimg">
             <img class="playerimg" src="./images/wizardcutout.png">
         </div>
 
