@@ -1,4 +1,4 @@
-class Spell {
+export class Spell {
 
     constructor(n, dmg, cost){
         this.damage = dmg;

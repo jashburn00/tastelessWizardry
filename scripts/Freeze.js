@@ -1,4 +1,4 @@
-class Freeze extends Spell {
+export class Freeze extends Spell {
     constructor(){
         super("Freeze", 0, 45);
     }

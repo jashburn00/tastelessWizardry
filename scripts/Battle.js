@@ -1,4 +1,4 @@
-class Battle {
+export class Battle {
     
 
     constructor(h, e){

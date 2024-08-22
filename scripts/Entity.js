@@ -1,4 +1,4 @@
-class Entity {
+export class Entity {
 
     constructor(monsterClass, n){ // 0 - 5 for creating a monster
         this.maxHealth = monsterClass * 70;

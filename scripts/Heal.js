@@ -1,5 +1,4 @@
-
-class Heal extends Spell{
+export class Heal extends Spell{
     constructor(){
         super("Heal", 0, 100);
     }
@@ -13,9 +12,9 @@ class Heal extends Spell{
                 rec = 160 - (h.health - h.maxHealth);
                 h.health = h.maxHealth;
             }
-            return h.name+" used "+this.name+" and recovered "+rec+" health! (costed "+this.manaCost+" mana)");
+            return h.name+" used "+this.name+" and recovered "+rec+" health! (costed "+this.manaCost+" mana)";
         } else {
-            return h.name+" tried to use "+this.name+", but had insufficient mana!");
+            return h.name+" tried to use "+this.name+", but had insufficient mana!";
         }
     }
 }

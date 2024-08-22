@@ -1,4 +1,4 @@
-class Thwack extends Spell {
+export class Thwack extends Spell {
     constructor(){
         super("Thwack", 0, 95);
     }

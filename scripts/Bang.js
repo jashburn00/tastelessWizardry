@@ -1,4 +1,4 @@
-class Bang extends Spell{
+export class Bang extends Spell{
     constructor(){
         super("Bang", 30, 30);
     }

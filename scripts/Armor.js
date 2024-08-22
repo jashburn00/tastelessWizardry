@@ -1,4 +1,4 @@
-class Armor {
+export class Armor {
 
     constructor(n, eff){
         this.name = n;

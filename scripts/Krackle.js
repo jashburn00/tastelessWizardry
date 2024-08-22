@@ -1,4 +1,4 @@
-class Krackle extends Spell {
+export class Krackle extends Spell {
     constructor(){
         super("Krackle", 60, 55);
     }

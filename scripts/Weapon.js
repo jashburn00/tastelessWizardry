@@ -1,4 +1,4 @@
-class Weapon {
+export class Weapon {
 
     constructor(n, d){
         if(n == null){

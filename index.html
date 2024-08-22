@@ -3,7 +3,7 @@
     <head>
         <title>Tasteless Wizardry</title>
         <link rel="stylesheet" href="style.css">
-        <script src="script.js" defer></script>
+        <script type="module" src="script.js" defer></script>
     </head>
     <body>
         <nav>
@@ -16,7 +16,7 @@
             <form id="initialform">
                 <input type="text" id="nameInput" placeholder="Enter your character's name...">
             </form>
-            <div class="navbtn help" onclick="showrules()"><h3>How does this work?</h3></div>
+            <div class="navbtn help" id="helpbutton"><h3>How does this work?</h3></div>
             <div class="helpinfo" id="helpinfo">
                 <p style="margin-bottom: 20px;">
                     You are a wizard exploring a cave in search of an ancient, very powerful, 
@@ -41,14 +41,19 @@
                 <p>
                     Mana recharges during battle, but beware; each monster you fight will be stronger than the last!
                 </p>
-                <div class="navbtn help" onclick="hiderules()"><h3>OK</h3></div>
+                <div class="navbtn help" id="OKbutton"><h3>OK</h3></div>
             </div>
         </div>
 
         <div class="maincontent" id="gameplay">
-            <div class="tooltip">
+            <div class="tooltipWeapon" id="tooltipWeapon">
                 <h2 id="weaponname">WEAPONNAME</h2>
                 <h3 class="monsterhealth" id="weapondamage">Damage: ABCD</h3>
+            </div>
+            <div class="tooltipSpells" id="tooltipSpells">
+                <h2 id="spellname">SPELLNAME</h2>
+                <h3 class="monsterhealth" id="weapondamage">Damage: ABCD</h3>
+                <h3 class="monsterhealth" id="spellcost">Cost: ABCD</h3>
             </div>
 
             <audio id="monsterarrivalaudio" src="./soundFX/arrivalRoar.mp3"></audio>
@@ -57,12 +62,24 @@
                 <h2 class="monsterhealth">Health: ABCD</h2>
                 <h2 class="monsterhealth">Damage: ABCD</h2>
             </div>
-            
+
             <div class="playeroptions">
                 <div class="weapon" id="equippedweapon">
-                    <img src="./images/holysword.jpeg" class="equippedweapon">
+                    <img src="./images/holysword.jpeg" class="equippedweapon" id="weaponimg">
+                </div>
+                <div class="weapon" id="spells">
+                    <img src="./images/spells.jpg" class="equippedweapon" id="spellimg">
+                </div>
+                <div class="weapon" id="armor">
+                    poop
+                </div>
+                <div class="weapon" id="playerstats">
+                    <h2 style="font-size: 38px;">PLAYERNAME</h2>
+                    <h3 class="monsterhealth">Health: ABCD</h3>
+                    <h3 class="monsterhealth">Mana: ABCD</h3>
                 </div>
             </div>
+
             <img src="./images/javierbardemcutout.png" class="monsterimg">
             <img class="playerimg" src="./images/wizardcutout.png">
         </div>

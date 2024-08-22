@@ -83,16 +83,25 @@ form {
     display: inline-block;
 }
 
+#playerstats {
+    background-color: black;
+    border: 12px groove silver;
+    padding: 5px 15px;
+    padding-bottom: 0px;
+}
+
 audio {
     display: hidden;
     position: absolute;
 }
 
-.tooltip {
+.tooltipWeapon {
     position: absolute;
     display: none;
     background-color: black;
     border: 3px groove darkgray;
+    z-index: 1000;
+    padding: 8px;
 }
 
 #gameplay {
@@ -137,7 +146,8 @@ audio {
 .playeroptions {
     position: absolute;
     top: 75%;
-    border: 8px groove lightgray;
+    left: 2%;
+    display: flex;
 }
 
 .equippedweapon {
@@ -146,9 +156,17 @@ audio {
     cursor: pointer;
 }
 
-.optionbox.spell {
+.weapon {
+    margin: 30px;
+    border: 10px groove rgba(166, 127, 28, 0.864);
+}
+
+.spellitem {
     border: 4px solid rgb(255, 213, 0);
     background-color: rgb(255, 240, 141);
+    margin: 6px;
+    padding: 6px;
+    display: block;
 }
 
 a {
