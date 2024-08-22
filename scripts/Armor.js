@@ -6,7 +6,7 @@ export class Armor {
         this.url = u;
     }
 
-    getNumber(id){
+    static getNumber(id){
         switch (id) { //cases 0 - 5 inclusive
             case 0:
                 return new Armor("Stinky Socks", 4, "./images/socks.jpg");

@@ -70,9 +70,9 @@
             <audio id="monsterarrivalaudio" src="./soundFX/arrivalRoar.mp3"></audio>
             <audio id="monsterdeathaudio" src="./soundFX/dying.mp3"></audio>
             <div class="monsterstats">
-                <h1 class="monstertitle">MONSTERNAME</h1>
-                <h2 class="monsterhealth">Health: ABCD</h2>
-                <h2 class="monsterhealth">Damage: ABCD</h2>
+                <h1 class="monstertitle" id="monstertitle">MONSTERNAME</h1>
+                <h2 class="monsterhealth" id="monsterhealth">Health: ABCD</h2>
+                <h2 class="monsterhealth" id="monsterdamage">Damage: ABCD</h2>
             </div>
 
             <div class="playeroptions">
@@ -94,6 +94,10 @@
 
             <img src="./images/frogcutout.png" class="monsterimg">
             <img class="playerimg" src="./images/wizardcutout.png">
+            <div class="lossscreen" id="lossscreen">
+                <h1>You died</h1>
+                <div class="navbtn"><h1>Exit</h1></div>
+            </div>
         </div>
 
     </body>

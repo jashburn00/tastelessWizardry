@@ -28,8 +28,8 @@ export class Weapon {
         }
     }
 
-    getNumber(id){
-        switch (id){ //need cases 0 - 5 inclusive
+    static getNumber(id){
+        switch (id){ 
             case 0: //starting weapon
                 return new Weapon("Toothpick", 20, "./images/toothpick.jpg");
             case 1:

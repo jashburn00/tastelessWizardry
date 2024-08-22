@@ -22,10 +22,6 @@ export class Hero extends Entity{
         this.health = this.maxHealth;
     }
 
-    getArmor(){
-        return this.armor;
-    }
-
     useSpell(spell){
         if (this.mana < spell.manaCost){
             return false;

@@ -248,3 +248,17 @@ li {
     padding-left: 0px;
     text-align: center;
 }
+
+.lossscreen {
+    position: absolute;
+    width: 64%;
+    height: 40%;
+    padding: 50px;
+    top: 20%;
+    left: 22%;
+    right: 30%;
+    background-color: black;
+    border: 12px groove silver;
+    display: none;
+    z-index: 2500;
+}

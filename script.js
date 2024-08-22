@@ -5,6 +5,11 @@ let knownspells = [];
 knownspells.push(new classes.Spell("balls", 50, 20));
 let monstersDefeated = 0;
 let playerName = "";
+let hero;
+let monsters = [];
+for(let j = 0; j < 6; j++){
+    monsters.push(classes.Entity.getNumber(j));
+}
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -27,22 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     OKbutton2.addEventListener('click', () => {
         document.getElementById("mechanics").style.display = "none";
     });
-
-    const form = document.getElementById("initialform");
-    document.getElementById("gameplay").style.display = "none";
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        playerName = document.getElementById("nameInput").value;
-        const startup = document.getElementById("startup");
-        if(startup){
-            startup.style.display = 'none';
-        }
-        
-        //TODO: start this bitch up
-        document.getElementById("gameplay").style.display = "inline-block";
-        document.getElementById("playername").innerHTML = playerName;
-        enterMonster();
-    });
+    
     const playerweapon = document.getElementById("equippedweapon");
     playerweapon.addEventListener('mousemove', (e) => {
         hoverWeapon(e);
@@ -70,9 +60,45 @@ document.addEventListener('DOMContentLoaded', () => {
             hideSpells();
         }
     });
+
+    const form = document.getElementById("initialform");
+    document.getElementById("gameplay").style.display = "none";
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        playerName = document.getElementById("nameInput").value;
+        const startup = document.getElementById("startup");
+        if(startup){
+            startup.style.display = 'none';
+        }
+        
+        //TODO: start it up
+        document.getElementById("gameplay").style.display = "inline-block";
+        document.getElementById("playername").innerHTML = playerName;
+        hero = new classes.Hero(playerName);
+        //start game loop
+        for(let i = 0; i<monsters.length; i++){
+            let m = enterMonster(i);
+            while(hero.health > 0){
+                if(m.health <= 0){
+                    diedMonster(m, hero);
+                    break;
+                }
+            }
+
+            if(hero.health <= 0){
+                //end the game
+                displayLoss();
+                break;
+            }else if (m.health <= 0){
+                continue;
+            } else{
+                alert("whoops");
+            }
+        }
+    });
 });
 
-function hoverSpells(e){ //TODO: subscribe each spell
+function hoverSpells(e){ //TODO: add useon()
     const tooltip = document.getElementById("spells");
     tooltip.innerHTML = '';
     knownspells.forEach(Element => {
@@ -94,23 +120,28 @@ function hoverSpells(e){ //TODO: subscribe each spell
         spellText.innerHTML = Element.description;
 
         //in the darkness bind them
-        tooltip.appendChild(newDiv); //this line causes it
+        tooltip.appendChild(newDiv); 
         newDiv.appendChild(spellTitle);
         newDiv.appendChild(spellDamage);
         newDiv.appendChild(spellCost);
         newDiv.appendChild(spellText);
+        tooltip.addEventListener('click', () => {
+            //use spell
+        });
     });
 
 }
 
 function hideSpells(){
-    const tooltip = document.getElementById("spells");
-    tooltip.innerHTML = '';
-    let resetSpellsImg = document.createElement('img');
-    resetSpellsImg.src = "./images/spells.jpg";
-    resetSpellsImg.className = "equippedweapon";
-    resetSpellsImg.id = "spellsimg";
-    tooltip.appendChild(resetSpellsImg);
+    setTimeout(() => {
+        const tooltip = document.getElementById("spells");
+        tooltip.innerHTML = '';
+        let resetSpellsImg = document.createElement('img');
+        resetSpellsImg.src = "./images/spells.jpg";
+        resetSpellsImg.className = "equippedweapon";
+        resetSpellsImg.id = "spellsimg";
+        tooltip.appendChild(resetSpellsImg);
+    }, 200);
 }
 
 function hoverArmor(e){
@@ -137,16 +168,29 @@ function hideWeapon(){
     tooltip.style.display = "none";
 }
 
-function enterMonster(){
+function enterMonster(i){
     let arrivalAudio = document.getElementById("monsterarrivalaudio");
     arrivalAudio.volume = 0.3;
     arrivalAudio.play();
+    let m = classes.Entity.getNumber(i);
+    //set frontend 
+    document.getElementById("monsterimg").style.src = m.url;
+    document.getElementById("monsterhealth").innerHTML = "Health: "+m.health;
+    document.getElementById("monsterdamage").innerHTML = "Damage: "+m.weapon.damage;
+    return m;
 }
 
-function diedMonster(){
+function diedMonster(m, h){
     let deathAudio = document.getElementById("monsterdeathaudio");
-    deathAudio.volume = 0.4;
+    deathAudio.volume = 0.3;
     deathAudio.play();
+    h.levelUp();
+    generate
+}
+
+function displayLoss(){
+    let ls = document.getElementById("lossscreen");
+    ls.style.display = "block";
 }
 
 

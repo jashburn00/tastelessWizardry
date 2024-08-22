@@ -14,7 +14,7 @@ export class Entity {
         this.url = u;
     }
 
-    getNumber(n){
+    static getNumber(n){
         switch(n){
             case 0: 
                 return new Entity(1, "Rabid Frog", "./images/frogcutout.png");
