@@ -78,22 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
         //start game loop
         for(let i = 0; i<monsters.length; i++){
             let m = enterMonster(i);
-            while(hero.health > 0){
-                if(m.health <= 0){
-                    diedMonster(m, hero);
-                    break;
-                }
-            }
-
-            if(hero.health <= 0){
-                //end the game
-                displayLoss();
-                break;
-            }else if (m.health <= 0){
-                continue;
-            } else{
-                alert("whoops");
-            }
+            document.getElementById("monsterimg").style.src = m.url;
+            document.getElementById("monsterhealth").innerHTML = "Health: "+m.health;
+            document.getElementById("monsterdamage").innerHTML = "Damage: "+m.weapon.damage;
+            //TODO: game logic
         }
     });
 });
