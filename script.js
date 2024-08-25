@@ -165,6 +165,7 @@ function enterMonster(i){
     document.getElementById("monsterimg").style.src = m.url;
     document.getElementById("monsterhealth").innerHTML = "Health: "+m.health;
     document.getElementById("monsterdamage").innerHTML = "Damage: "+m.weapon.damage;
+    document.getElementById("monstertitle").innerHTML = m.name;
     return m;
 }
 
