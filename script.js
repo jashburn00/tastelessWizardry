@@ -10,7 +10,11 @@ let monsters = [];
 for(let j = 0; j < 6; j++){
     monsters.push(classes.Entity.getNumber(j));
 }
-
+console.log(monsters);
+let currBattle;
+let logstring = "";
+let turnResult;
+let reward;
 
 document.addEventListener('DOMContentLoaded', () => {
     const helpbutton = document.getElementById("helpbutton");
@@ -26,6 +30,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const mechbutton = document.getElementById("mechanicsbutton");
     mechbutton.addEventListener('click', () => {
         document.getElementById("mechanics").style.display = "block";
+    });
+
+    const takerewardbtn = document.getElementById("yesreward");
+    takerewardbtn.addEventListener('click', () => {
+        //TODO: hanadle reward
+        if (reward instanceof classes.Spell){
+            console.log('player picked up spell' + reward.name)
+            if (knownspells.indexOf(reward) != -1){
+                knownspells.push(reward);
+            }else{
+                //already known
+                logstring += "You found a new spell, but you already knew that one didn't you?.";
+            }
+        }else if (reward instanceof classes.Weapon){
+            hero.weapon = reward;
+            console.log("player picked up weapon "+reward.name);
+        }else {
+            //armor
+            hero.armor = reward;
+            console.log("player picked up armor "+reward.name);
+        }
+        updateUI();
+        document.getElementById("rewardscreen").style.display = "none";
+    });
+
+    const noperewardbtn = document.getElementById("noreward");
+    noperewardbtn.addEventListener('click', () => {
+        //TODO: handle reward
+        document.getElementById("rewardscreen").style.display = "none";
     });
 
     const OKbutton2 = document.getElementById("OKbutton2");
@@ -61,6 +94,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const weaponbtn = document.getElementById("equippedweapon");
+    //b
+    weaponbtn.addEventListener('click', () => {
+        let retval = currBattle.doTurn(hero.weapon);
+        logstring = retval.text;
+        let outcome = retval.outcome;
+        updateUI(outcome);
+    });
+    
+
     const form = document.getElementById("initialform");
     document.getElementById("gameplay").style.display = "none";
     form.addEventListener('submit', (event) => {
@@ -69,20 +112,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const startup = document.getElementById("startup");
         if(startup){
             startup.style.display = 'none';
-        }
+        };
         
         //TODO: start it up
         document.getElementById("gameplay").style.display = "inline-block";
         document.getElementById("playername").innerHTML = playerName;
+        document.getElementById("logwindow").style.display = "block";
         hero = new classes.Hero(playerName);
+        updatePlayerUI();        
         //start game loop
-        for(let i = 0; i<monsters.length; i++){
-            let m = enterMonster(i);
-            document.getElementById("monsterimg").style.src = m.url;
-            document.getElementById("monsterhealth").innerHTML = "Health: "+m.health;
-            document.getElementById("monsterdamage").innerHTML = "Damage: "+m.weapon.damage;
-            //TODO: game logic
-        }
+        enterMonster(0);
+        currBattle = new classes.Battle(hero, monsters[monstersDefeated], monstersDefeated+1);
     });
 });
 
@@ -107,15 +147,25 @@ function hoverSpells(e){ //TODO: add useon()
         let spellText = document.createElement('p');
         spellText.innerHTML = Element.description;
 
+        newDiv.addEventListener('click', () => {
+            turnResult = currBattle.doTurn(Element);
+            logstring = turnResult.text;
+            updateUI(turnResult.outcome);
+        });
+
         //in the darkness bind them
         tooltip.appendChild(newDiv); 
         newDiv.appendChild(spellTitle);
         newDiv.appendChild(spellDamage);
         newDiv.appendChild(spellCost);
         newDiv.appendChild(spellText);
-        tooltip.addEventListener('click', () => {
-            //use spell
-        });
+        // tooltip.addEventListener('click', () => {
+        //     //use spell
+        //     let retval = Element.useOn(hero, currBattle.monster);
+        //     logstring = retval.text;
+        //     outcome = retval.outcome;
+        //     updateUI(outcome); 
+        // });
     });
 
 }
@@ -137,6 +187,8 @@ function hoverArmor(e){
     tooltip.style.display = "block";
     tooltip.style.left = e.pageX+"px";
     tooltip.style.top = (e.pageY - tooltip.offsetHeight - 5)+"px";
+    document.getElementById("armorname").innerHTML = hero.armor.name;
+    document.getElementById("armorresistance").innerHTML = "Resistance: "+hero.armor.effectiveness;
 }
 
 function hidearmor(){
@@ -149,6 +201,8 @@ function hoverWeapon(e){
     tooltip.style.display = "block";
     tooltip.style.left = e.pageX+"px";
     tooltip.style.top = (e.pageY - tooltip.offsetHeight - 5)+"px";
+    document.getElementById("weaponname").innerHTML = hero.weapon.name;
+    document.getElementById("weapondamage").innerHTML = "Damage: "+hero.weapon.damage;
 }
 
 function hideWeapon(){
@@ -158,23 +212,30 @@ function hideWeapon(){
 
 function enterMonster(i){
     let arrivalAudio = document.getElementById("monsterarrivalaudio");
-    arrivalAudio.volume = 0.3;
+    // arrivalAudio.volume = 0.3;
+    arrivalAudio.volume = 1;
     arrivalAudio.play();
-    let m = classes.Entity.getNumber(i);
+    let m = monsters[monstersDefeated];
     //set frontend 
-    document.getElementById("monsterimg").style.src = m.url;
+    document.getElementById("monsterimg").src = m.url;
     document.getElementById("monsterhealth").innerHTML = "Health: "+m.health;
     document.getElementById("monsterdamage").innerHTML = "Damage: "+m.weapon.damage;
     document.getElementById("monstertitle").innerHTML = m.name;
+    updatePlayerUI();
     return m;
 }
 
-function diedMonster(m, h){
+function diedMonster(){
     let deathAudio = document.getElementById("monsterdeathaudio");
     deathAudio.volume = 0.3;
     deathAudio.play();
-    h.levelUp();
-    generate
+    hero.levelUp();
+    monstersDefeated++;
+    //looting phase
+    let lootdrops = monstersDefeated+1;
+    for(let i = 0; i<=lootdrops; i++){
+        rewardPlayer();
+    }
 }
 
 function displayLoss(){
@@ -182,5 +243,62 @@ function displayLoss(){
     ls.style.display = "block";
 }
 
+function updateUI(outcome=0){
+    //add to the event log
+    let logbox = document.getElementById('logparagraph');
+    logbox.innerHTML += "\n"+logstring;
+    logbox.scrolltop = logbox.scrollHeight;
+    //update health divs
+    //monsterhealth
+    document.getElementById("monsterhealth").innerHTML = "Health: "+currBattle.monster.health;
+    //playerhealth, playermana
+    updatePlayerUI();
+    //handle game state
+        // 0: keep fighting (nothing)
+        // 1: monster died, give loot and start new battle 
+    if (outcome==1){
+        diedMonster();
+        enterMonster(monstersDefeated);
+        currBattle = new classes.Battle(hero, monsters[monstersDefeated], monstersDefeated+1);
+    }
+}
 
+function updatePlayerUI(){
+    document.getElementById("playerhealth").innerHTML = "Health: "+hero.health;
+    document.getElementById("playermana").innerHTML = "Mana: "+hero.mana;
+    //update armor image
+    let current_armor = hero.armor;
+    document.getElementById("armorimg").src = current_armor.url;
+    //update weapon image
+    let current_weapon = hero.weapon;
+    document.getElementById("weaponimg").src = current_weapon.url;
+}
 
+function rewardPlayer(){
+    document.getElementById("rewardscreen").style.display = "block";
+    let rimg = document.getElementById("rewardimg");
+    // let type = randint(0,2);
+    let type = 0;
+    if (type == 0) {
+        //weapon
+        //0-5
+        let subtype = randint(0,6);
+        reward = classes.Weapon.getNumber(subtype);
+    } else if (type == 1){
+        //armor
+        //0-5
+        let subtype = randint(0,6);
+        reward = classes.Armor.getNumber(subtype);
+    } else {
+        //spell
+        //0-5
+        let subtype = randint(0,6);
+        reward = classes.Spell.getNumber(subtype);
+        }
+        rimg.source = reward.url;
+    }
+}
+
+function randint(min, max){
+    return Math.floor(Math.random() * (max - min) + min);
+}

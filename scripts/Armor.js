@@ -21,7 +21,7 @@ export class Armor {
             case 5:
                 return new Armor("Holy Armor", 60);
             default:
-                return new Armor("DEFAULT ARMOR", 0);
+                return new Armor("DEFAULT ARMOR", 0, './images/box.PNG');
         }
     }
 }

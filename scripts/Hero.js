@@ -10,8 +10,10 @@ export class Hero extends Entity{
         this.weapon = Weapon.getNumber(0);
         this.armor = Armor.getNumber(0);
         this.maxMana = 100;
+        this.maxHealth = 100;
         this.mana = 100;
         this.spells = [];
+        this.name = n;
     }
     
     levelUp(){

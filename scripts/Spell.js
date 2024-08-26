@@ -1,9 +1,11 @@
 export class Spell {
 
-    constructor(n, dmg, cost){
+    constructor(n, dmg, cost, desc){
         this.damage = dmg;
         this.name = n;
         this.manaCost = cost;
+        this.description = desc;
+        this.url = './images/spells.jpg';
     }
 
     useOn(h, e){

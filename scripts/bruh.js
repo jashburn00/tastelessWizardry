@@ -9,3 +9,4 @@ export {Weapon} from './Weapon.js';
 export {Armor} from './Armor.js';
 export {Entity} from './Entity.js';
 export {Hero} from './Hero.js';
+export {Battle} from './Battle.js';

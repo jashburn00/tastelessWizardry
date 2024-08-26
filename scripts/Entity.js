@@ -17,17 +17,17 @@ export class Entity {
     static getNumber(n){
         switch(n){
             case 0: 
-                return new Entity(1, "Rabid Frog", "./images/frogcutout.png");
+                return new Entity(1, "Rabid Frog", './images/frogcutout.png');
             case 1: 
-                return new Entity(2, "Common Crackhead", "./images/bumcutout.png");
+                return new Entity(2, "Common Crackhead", './images/bumcutout.png');
             case 2:
-                return new Entity(3, "Javier Bardem", "./images/javierbardemcutout.png");
+                return new Entity(3, "Javier Bardem", './images/javierbardemcutout.png');
             case 3:
-                return new Entity(4, "Cursed Spartan", "./images/spartancutout.png");
+                return new Entity(4, "Cursed Spartan", './images/spartancutout.png');
             case 4:
-                return new Entity(5, "Minotaur", "./images/minotaurcutout.png");
+                return new Entity(5, "Minotaur", './images/minotaurcutout.png');
             case 5:
-                return new Entity(6, "Gigatroll", "./images/trollcutout.png");
+                return new Entity(6, "Gigatroll", './images/trollcutout.png');
         }
     }
 }

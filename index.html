@@ -76,6 +76,11 @@
                 <h2 class="monsterhealth" id="monsterdamage">Damage: ABCD</h2>
             </div>
 
+            <div class="logwindow" id="logwindow">
+                <h1>Game Log</h1>
+                <p class="logparagraphs" id="logparagraph"></p>
+            </div>
+
             <div class="playeroptions">
                 <div class="weapon" id="equippedweapon">
                     <img src="./images/holysword.jpeg" class="equippedweapon" id="weaponimg">
@@ -84,12 +89,24 @@
                     <img src="./images/spells.jpg" class="equippedweapon" id="spellimg">
                 </div>
                 <div class="weapon" id="armor">
-                    <img src="./images/box.PNG">
+                    <img src="./images/box.PNG", id="armorimg">
                 </div>
                 <div class="playerstats" id="playerstats">
                     <h2 style="font-size: 38px;" id="playername">PLAYERNAME</h2>
-                    <h3 class="monsterhealth">Health: ABCD</h3>
-                    <h3 class="monsterhealth">Mana: ABCD</h3>
+                    <h3 class="monsterhealth", id="playerhealth">Health: ABCD</h3>
+                    <h3 class="monsterhealth", id="playermana">Mana: ABCD</h3>
+                </div>
+            </div>
+
+            <div class="rewardscreen" id="rewardscreen">
+                <h1 style="margin-bottom: 80px; margin-top: 46px;"> YOUFOUNDA </h1>
+                <div class="weapon rewardimg">
+                    <img src="./images/holysword.jpeg" style="cursor: default" class="equippedweapon" id="rewardimg">
+                </div>
+                <h2 style="margin-top: 50px;">Do you take it like a champ?</h2>
+                <div class="playeroptions reward">
+                    <div class='navbtn help reward' id="yesreward"><h3>Yes please</h3></div>
+                    <div class='navbtn help reward' id="noreward"><h3>Nah nigga</h3></div>
                 </div>
             </div>
 

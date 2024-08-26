@@ -2,7 +2,7 @@ import {Spell} from './Spell.js';
 
 export class Heal extends Spell{
     constructor(){
-        super("Heal", 0, 100);
+        super("Heal", 0, 100, "Heals you by 160 health");
     }
 
     useOn(h, e){

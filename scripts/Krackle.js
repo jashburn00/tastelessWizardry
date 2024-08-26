@@ -2,7 +2,7 @@ import {Spell} from './Spell.js';
 
 export class Krackle extends Spell {
     constructor(){
-        super("Krackle", 60, 55);
+        super("Krackle", 60, 55, "Deals direct damage.");
     }
 
     useOn(h, e){

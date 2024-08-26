@@ -2,7 +2,7 @@ import {Spell} from './Spell.js';
 
 export class Thwack extends Spell {
     constructor(){
-        super("Thwack", 0, 95);
+        super("Thwack", 0, 95, "Chance of instakill (lower total health means higher chance)");
     }
 
     useOn(h, e){

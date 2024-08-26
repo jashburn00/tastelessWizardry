@@ -262,3 +262,61 @@ li {
     display: none;
     z-index: 2500;
 }
+
+.logwindow{
+    position: absolute;
+    display: none;
+    width: 20%;
+    height: 29%;
+    padding: 25px;
+    margin: 0;
+    top: 18%;
+    /* left: 50%; */
+    right: 3%;
+    background-color: black;
+    border: 12px groove silver;
+    display: none;
+    z-index: 1500;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+}
+
+.logparagraphs{
+    color: lightgray;
+    font-size: 20px;
+    text-align: left;
+    white-space: pre-line;
+}
+
+.rewardscreen{
+    position: absolute;
+    display: none;
+    /* display: block; */
+    min-width: 50%;
+    max-width: 55%;
+    min-height: 50%;
+    max-height: 65%;
+    /* overflow: hidden; */
+    /* padding: 25px; */
+    top: 20%;
+    left: 20%;
+    /* margin: 0; */
+    /* right: 3%; */
+    background-color: black;
+    border: 12px groove silver;
+    z-index: 1500;
+}
+
+.weapon.rewardimg {
+    margin: 0 auto;
+}
+
+.playeroptions.reward{
+    margin: 15px auto;
+    width: 100%;
+}
+
+.navbtn.help.reward {
+    margin: 60px auto;
+}

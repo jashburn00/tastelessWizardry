@@ -2,7 +2,7 @@ import {Spell} from "./Spell.js";
 
 export class Kaboom extends Spell {
     constructor(){
-        super("Kaboom", 120, 120);
+        super("Kaboom", 120, 120, "Deals direct damage.");
     }
 
     useOn(h, e){

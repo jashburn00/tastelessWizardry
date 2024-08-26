@@ -18,13 +18,15 @@ export class Weapon {
         }
     }
     
-    useOn(u, r){ //should return values
-        let loss = this.damage - r.armor.effectiveness;
+    useOn(h, m){ //should return values
+        
+        let loss = this.damage - m.armor.effectiveness;
+        m.health -= loss;
+        
         if(loss <= 0){
-            return 0;
+            return "The "+m.name+" was not damaged by the "+this.name+"!";
         }else{
-            r.health -= loss;
-            return loss;
+            return m.name+"'s defenses were brutally penetrated by "+h.name+"'s "+this.name+" for "+loss+" damage!";
         }
     }
 
