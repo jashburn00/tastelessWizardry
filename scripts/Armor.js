@@ -13,13 +13,13 @@ export class Armor {
             case 1: 
                 return new Armor("Cardboard Box", 10, "./images/box.jpg");
             case 2:
-                return new Armor("Warding Robes", 20);
+                return new Armor("Warding Robes", 20, './images/robes.png');
             case 3: 
-                return new Armor("Chain Mail", 35);
+                return new Armor("Chain Mail", 35, './images/chainmail.jpg');
             case 4:
-                return new Armor("Heavy Iron", 49);
+                return new Armor("Heavy Iron", 49, './images/heavyarmor.PNG');
             case 5:
-                return new Armor("Holy Armor", 60);
+                return new Armor("Holy Armor", 60, './images/holyarmor.PNG');
             default:
                 return new Armor("DEFAULT ARMOR", 0, './images/box.PNG');
         }

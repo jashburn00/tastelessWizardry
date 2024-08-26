@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }else {
             //armor
             hero.armor = reward;
-            console.log("player picked up armor "+reward.name);
+            console.log("player picked up armor "+reward);
         }
         updateUI();
         document.getElementById("rewardscreen").style.display = "none";
@@ -278,7 +278,7 @@ function rewardPlayer(){
     document.getElementById("rewardscreen").style.display = "block";
     let rimg = document.getElementById("rewardimg");
     // let type = randint(0,2);
-    let type = 0;
+    let type = 1;
     if (type == 0) {
         //weapon
         //0-5
@@ -294,9 +294,9 @@ function rewardPlayer(){
         //0-5
         let subtype = randint(0,6);
         reward = classes.Spell.getNumber(subtype);
-        }
-        rimg.source = reward.url;
     }
+    document.getElementById("rewardimg").src = reward.url;
+    document.getElementById("rewardtitle").innerHTML = reward.name;
 }
 
 function randint(min, max){
