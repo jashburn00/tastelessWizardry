@@ -132,6 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("lossscreen").style.display = "none";
         location.reload();
     });
+    const exitbtn2 = document.getElementById("exitbtnwin");
+    exitbtn2.addEventListener('click', () => {
+        document.getElementById("winscreen").style.display = "none";
+        location.reload();
+    });
 
     const form = document.getElementById("initialform");
     document.getElementById("gameplay").style.display = "none";
@@ -284,8 +289,13 @@ function updateUI(outcome=0){
     }
     else if (outcome==1){
         diedMonster();
-        enterMonster(monstersDefeated);
-        currBattle = new classes.Battle(hero, monsters[monstersDefeated], monstersDefeated+1);
+        if(monstersDefeated == 5){
+            //win the game
+            playerWins();
+        }else{
+            enterMonster(monstersDefeated);
+            currBattle = new classes.Battle(hero, monsters[monstersDefeated], monstersDefeated+1);
+        }
     }
     else if (outcome==2){
         displayLoss();
@@ -354,4 +364,8 @@ function spellmenuToggle(){
         spellmenu.style.display = "none";
         hideSpells();
     }
+}
+
+function playerWins(){
+    document.getElementById("winscreen").style.display = "block";
 }

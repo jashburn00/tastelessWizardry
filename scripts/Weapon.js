@@ -32,7 +32,7 @@ export class Weapon {
     static getNumber(id){
         switch (id){ 
             case 0: //starting weapon
-                return new Weapon("Toothpick", 20000, "./images/toothpick.jpg");
+                return new Weapon("Toothpick", 20, "./images/toothpick.jpg");
             case 1:
                 return new Weapon("Big Stick", 35, "./images/stick.png");
             case 2:
