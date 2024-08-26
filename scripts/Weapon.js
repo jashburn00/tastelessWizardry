@@ -38,7 +38,7 @@ export class Weapon {
             case 2:
                 return new Weapon("Tiger Bone", 60, "./images/tigerbone.jpg");
             case 3:
-                return new Weapon("Elemental Blade", 85, "./images/elementalsword,jpg");
+                return new Weapon("Elemental Blade", 85, "./images/elementalsword.jpg");
             case 4: 
                 return new Weapon("Flaming Halberd", 105, "./images/flaminghalberd.jpg");
             case 5:
