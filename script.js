@@ -2,7 +2,12 @@
 // import { Kaboom } from './scripts/Kaboom.js';
 import * as classes from './scripts/bruh.js';
 let knownspells = [];
-knownspells.push(new classes.Spell("balls", 50, 20));
+// knownspells.push(new classes.Bang());
+// knownspells.push(new classes.Heal());
+// knownspells.push(new classes.Freeze());
+// knownspells.push(new classes.Kaboom());
+// knownspells.push(new classes.Krackle());
+// knownspells.push(new classes.Thwack());
 let monstersDefeated = 0;
 let playerName = "";
 let hero;
@@ -15,6 +20,7 @@ let currBattle;
 let logstring = "";
 let turnResult;
 let reward;
+let rewardsLeft = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     const helpbutton = document.getElementById("helpbutton");
@@ -36,12 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
     takerewardbtn.addEventListener('click', () => {
         //TODO: hanadle reward
         if (reward instanceof classes.Spell){
-            console.log('player picked up spell' + reward.name)
-            if (knownspells.indexOf(reward) != -1){
+            console.log('player picked up spell' + reward.name);
+            let spell_already_known = false;
+            knownspells.forEach(element => {
+                if(element.name===reward.name){
+                    spell_already_known = true;
+                }
+            });
+            if (spell_already_known==false){
                 knownspells.push(reward);
+                logstring += "You found a new spell, "+reward.name+"!";
             }else{
-                //already known
-                logstring += "You found a new spell, but you already knew that one didn't you?.";
+                logstring += "You found a new spell, but you already knew that one didn't you?";
             }
         }else if (reward instanceof classes.Weapon){
             hero.weapon = reward;
@@ -52,13 +64,19 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("player picked up armor "+reward);
         }
         updateUI();
-        document.getElementById("rewardscreen").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+        if(rewardsLeft > 0){
+            rewardPlayer();
+        } 
     });
 
     const noperewardbtn = document.getElementById("noreward");
     noperewardbtn.addEventListener('click', () => {
         //TODO: handle reward
-        document.getElementById("rewardscreen").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+        if(rewardsLeft > 0){
+            rewardPlayer();
+        } 
     });
 
     const OKbutton2 = document.getElementById("OKbutton2");
@@ -82,17 +100,23 @@ document.addEventListener('DOMContentLoaded', () => {
         hidearmor();
     });
     
-    const playerspells = document.getElementById("spells");
-    playerspells.addEventListener('mouseenter', (e) => {
-        if(knownspells.length > 0){
-            hoverSpells(e);
-        }
+    const spellbtn = document.getElementById("spells");
+    spellbtn.addEventListener('click', () => {
+        spellmenuToggle();
     });
-    playerspells.addEventListener('mouseleave', (e) => {
-        if(knownspells.length > 0){
-            hideSpells();
-        }
-    });
+    // playerspells.addEventListener('mouseenter', (e) => {
+    //     if(knownspells.length > 0){
+    //         hoverSpells(e);
+    //     }
+    // });
+
+    
+
+    // playerspells.addEventListener('mouseleave', (e) => {
+    //     if(knownspells.length > 0){
+    //         hideSpells();
+    //     }
+    // });
 
     const weaponbtn = document.getElementById("equippedweapon");
     //b
@@ -102,7 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let outcome = retval.outcome;
         updateUI(outcome);
     });
-    
+
+    const exitbtn = document.getElementById("exitbtn");
+    exitbtn.addEventListener('click', () => {
+        document.getElementById("lossscreen").style.display = "none";
+        location.reload();
+    });
 
     const form = document.getElementById("initialform");
     document.getElementById("gameplay").style.display = "none";
@@ -126,9 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function hoverSpells(e){ //TODO: add useon()
-    const tooltip = document.getElementById("spells");
-    tooltip.innerHTML = '';
+function displaySpells(e){ //TODO: add useon()
+    const tooltip = document.getElementById("spellmenu");
+    // tooltip.innerHTML = '';
     knownspells.forEach(Element => {
         //create the div
         let newDiv = document.createElement('div');
@@ -168,18 +197,12 @@ function hoverSpells(e){ //TODO: add useon()
         // });
     });
 
+
 }
 
 function hideSpells(){
-    setTimeout(() => {
-        const tooltip = document.getElementById("spells");
-        tooltip.innerHTML = '';
-        let resetSpellsImg = document.createElement('img');
-        resetSpellsImg.src = "./images/spells.jpg";
-        resetSpellsImg.className = "equippedweapon";
-        resetSpellsImg.id = "spellsimg";
-        tooltip.appendChild(resetSpellsImg);
-    }, 200);
+    const tooltip = document.getElementById("spellmenu");
+    tooltip.innerHTML = '';    
 }
 
 function hoverArmor(e){
@@ -232,10 +255,9 @@ function diedMonster(){
     hero.levelUp();
     monstersDefeated++;
     //looting phase
-    let lootdrops = monstersDefeated+1;
-    for(let i = 0; i<=lootdrops; i++){
-        rewardPlayer();
-    }
+    let lootdrops = monstersDefeated+2;
+    rewardsLeft += lootdrops;
+    rewardPlayer();
 }
 
 function displayLoss(){
@@ -247,7 +269,8 @@ function updateUI(outcome=0){
     //add to the event log
     let logbox = document.getElementById('logparagraph');
     logbox.innerHTML += "\n"+logstring;
-    logbox.scrolltop = logbox.scrollHeight;
+    let sheeeit = document.getElementById("logwindow");
+    sheeeit.scrollTop = sheeeit.scrollHeight;
     //update health divs
     //monsterhealth
     document.getElementById("monsterhealth").innerHTML = "Health: "+currBattle.monster.health;
@@ -256,10 +279,16 @@ function updateUI(outcome=0){
     //handle game state
         // 0: keep fighting (nothing)
         // 1: monster died, give loot and start new battle 
-    if (outcome==1){
+    if (outcome==0){
+        //nothing
+    }
+    else if (outcome==1){
         diedMonster();
         enterMonster(monstersDefeated);
         currBattle = new classes.Battle(hero, monsters[monstersDefeated], monstersDefeated+1);
+    }
+    else if (outcome==2){
+        displayLoss();
     }
 }
 
@@ -275,10 +304,13 @@ function updatePlayerUI(){
 }
 
 function rewardPlayer(){
-    document.getElementById("rewardscreen").style.display = "block";
-    let rimg = document.getElementById("rewardimg");
-    // let type = randint(0,2);
-    let type = 1;
+    if(rewardsLeft <= 0){return;}
+    rewardsLeft--;
+    document.getElementById("overlay").style.display = "block";
+    // let rimg = document.getElementById("rewardimg");
+    let type = randint(0,3);
+    // let type = randint(0,1);
+    // let type = 2;
     if (type == 0) {
         //weapon
         //0-5
@@ -289,16 +321,37 @@ function rewardPlayer(){
         //0-5
         let subtype = randint(0,6);
         reward = classes.Armor.getNumber(subtype);
-    } else {
+    } else if (type == 2){
         //spell
         //0-5
         let subtype = randint(0,6);
         reward = classes.Spell.getNumber(subtype);
+        logstring = "\nYou found a spell, but you already knew that one.";
+        updateUI();
+        if(rewardsLeft > 0){
+            rewardPlayer();
+        } else {
+            //TODO: hide rewards
+            document.getElementById("overlay").style.display = "none";
+        }
+
     }
     document.getElementById("rewardimg").src = reward.url;
-    document.getElementById("rewardtitle").innerHTML = reward.name;
+    document.getElementById("rewardtitle").innerHTML = "You found: "+reward.name;
 }
 
 function randint(min, max){
     return Math.floor(Math.random() * (max - min) + min);
+}
+
+function spellmenuToggle(){
+    console.log("spellmenuToggle() has been reached")
+    let spellmenu = document.getElementById("spellmenu");
+    if(spellmenu.style.display != "flex"){
+        spellmenu.style.display = "flex";
+        displaySpells();
+    }else{
+        spellmenu.style.display = "none";
+        hideSpells();
+    }
 }

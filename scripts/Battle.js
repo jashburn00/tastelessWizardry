@@ -87,6 +87,7 @@
 import {Entity} from './Entity.js';
 import {Hero} from './Hero.js';
 import {Weapon} from './Weapon.js';
+import {Spell} from './Spell.js';
 export class Battle{
 
     constructor(h, m, rL){
@@ -104,11 +105,13 @@ export class Battle{
             if(this.monster.health <= 0){
                 this.battle_over = true;
                 outcomeVal = 1;
+                this.hero.mana = Math.min(this.hero.mana+20, this.hero.maxMana);
                 return {
                     text: tString+" "+this.monster.name+" died!",
                     outcome: outcomeVal
                 }
             } else{
+                this.hero.mana = Math.min(this.hero.mana+20, this.hero.maxMana);
                 outcomeVal = 0;
             }
         }
@@ -117,17 +120,33 @@ export class Battle{
             if(this.monster.health <= 0){
                 this.battle_over = true;
                 outcomeVal = 1;
+                this.hero.mana = Math.min(this.hero.mana+20, this.hero.maxMana);
                 return {
                     text: tString+" "+this.monster.name+" died!",
                     outcome: 1
                 }
             }
             else{
+                this.hero.mana = Math.min(this.hero.mana+20, this.hero.maxMana);
                 outcomeVal = 0;
             }
         }
 
         //monster attacks now
+        if(this.monster.isFrozen){
+            tString += this.monster.name+" was frozen and couldn't move!";   
+            this.monster.frozenTurns--; 
+            if (this.monster.frozenTurns == 0){
+                this.monster.isFrozen = false;
+                tString += " "+this.monster.name+" thawed out!";
+            }
+            
+            return {
+                text: tString,
+                outcomeVal: 0
+            }
+        }
+        ////////////////////////////////
         tString += "\n"+this.monster.weapon.useOn(this.monster, this.hero);
         if(this.hero.health <= 0){
             this.battle_over = true;
@@ -143,6 +162,7 @@ export class Battle{
                 outcome: outcomeVal
             }
         }
+        //////////////////////////////////////////////////////
     }
     
 }

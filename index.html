@@ -60,7 +60,7 @@
                     Each weapon deals a different amount of damage. <br><br>Each armor resists 
                     a different amount of damage, subtracting it directly from the damage
                     the wearer would take. <br><br> Spells cost mana. Mana recharges slowly during
-                    battle. If you don't have enough mana, you can't cast the spell!
+                    battle. If you don't have enough mana, your spell will fizzle out and waste your turn!
                     <br><br> Monsters will always attack you, and they each have a weapon and set of
                     armor. Monsters don't know any spells (for now >:). 
                 </p>
@@ -89,7 +89,7 @@
                     <img src="./images/spells.jpg" class="equippedweapon" id="spellimg">
                 </div>
                 <div class="weapon" id="armor">
-                    <img src="./images/box.PNG" id="armorimg">
+                    <img src="./images/box.PNG" class="equippedweapon"id="armorimg">
                 </div>
                 <div class="playerstats" id="playerstats">
                     <h2 style="font-size: 38px;" id="playername">PLAYERNAME</h2>
@@ -98,15 +98,17 @@
                 </div>
             </div>
 
-            <div class="rewardscreen" id="rewardscreen">
-                <h1 style="margin-bottom: 80px; margin-top: 46px;", id="rewardtitle"> YOUFOUNDA </h1>
-                <div class="weapon rewardimg">
-                    <img src="./images/holysword.jpeg" style="cursor: default" class="equippedweapon" id="rewardimg">
-                </div>
-                <h2 style="margin-top: 50px;">Do you take it like a champ?</h2>
-                <div class="playeroptions reward">
-                    <div class='navbtn help reward' id="yesreward"><h3>Yes please</h3></div>
-                    <div class='navbtn help reward' id="noreward"><h3>Nah nigga</h3></div>
+            <div class="screenoverlay" id="overlay">
+                <div class="rewardscreen" id="rewardscreen">
+                    <h1 style="margin-bottom: 80px; margin-top: 46px;", id="rewardtitle"> YOUFOUNDA </h1>
+                    <div class="weapon rewardimg">
+                        <img src="./images/holysword.jpeg" style="cursor: default" class="equippedweapon" id="rewardimg">
+                    </div>
+                    <h2 style="margin-top: 50px;">Do you take it like a champ?</h2>
+                    <div class="playeroptions reward">
+                        <div class='navbtn help reward' id="yesreward"><h3>Yes please</h3></div>
+                        <div class='navbtn help reward' id="noreward"><h3>Nah nigga</h3></div>
+                    </div>
                 </div>
             </div>
 
@@ -114,10 +116,18 @@
             <img class="playerimg" src="./images/wizardcutout.png">
             <div class="lossscreen" id="lossscreen">
                 <h1>You died</h1>
-                <div class="navbtn"><h1>Exit</h1></div>
+                <p>
+                    I know 4 infants who are better at this game than you are. 
+                    That was pathetic. Go ahead and click that button to retry.
+                </p>
+                <div class="navbtn" id="exitbtn"><h1>Restart</h1></div>
             </div>
+
+            <div class="spellmenu", id="spellmenu"></div>
         </div>
 
+        
+        
     </body>
     <footer>
 

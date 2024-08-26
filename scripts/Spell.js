@@ -1,3 +1,4 @@
+import * as spells from './bruh.js';
 export class Spell {
 
     constructor(n, dmg, cost, desc){
@@ -13,20 +14,20 @@ export class Spell {
         return "DEFAULT SPELL USEON";
     }
 
-    getNumber(id){
+    static getNumber(id){
         switch (id) {
             case 0: 
-                return new Bang();
+                return new spells.Bang();
             case 1: 
-                return new Krackle();
+                return new spells.Krackle();
             case 2:
-                return new Freeze();
+                return new spells.Freeze();
             case 3:
-                return new Heal();
+                return new spells.Heal();
             case 4: 
-                return new Kaboom();
+                return new spells.Kaboom();
             case 5:
-                return new Thwack();
+                return new spells.Thwack();
             default:
                 return new Spell();
         }

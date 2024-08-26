@@ -20,20 +20,19 @@ export class Weapon {
     
     useOn(h, m){ //should return values
         
-        let loss = this.damage - m.armor.effectiveness;
-        m.health -= loss;
+        let loss = Math.max(this.damage - m.armor.effectiveness, 0);        m.health -= loss;
         
         if(loss <= 0){
-            return "The "+m.name+" was not damaged by the "+this.name+"!";
+            return "\nThe "+m.name+" was not damaged by the "+this.name+"!";
         }else{
-            return m.name+"'s defenses were brutally penetrated by "+h.name+"'s "+this.name+" for "+loss+" damage!";
+            return "\n"+m.name+"'s defenses were brutally penetrated by "+h.name+"'s "+this.name+" for "+loss+" damage!";
         }
     }
 
     static getNumber(id){
         switch (id){ 
             case 0: //starting weapon
-                return new Weapon("Toothpick", 20, "./images/toothpick.jpg");
+                return new Weapon("Toothpick", 20000, "./images/toothpick.jpg");
             case 1:
                 return new Weapon("Big Stick", 35, "./images/stick.png");
             case 2:

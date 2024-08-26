@@ -11,9 +11,9 @@ export class Armor {
             case 0:
                 return new Armor("Stinky Socks", 4, "./images/socks.jpg");
             case 1: 
-                return new Armor("Cardboard Box", 10, "./images/box.jpg");
+                return new Armor("Cardboard Box", 10, "./images/box.PNG");
             case 2:
-                return new Armor("Warding Robes", 20, './images/robes.png');
+                return new Armor("Warding Robes", 20, './images/robes.jpg');
             case 3: 
                 return new Armor("Chain Mail", 35, './images/chainmail.jpg');
             case 4:
