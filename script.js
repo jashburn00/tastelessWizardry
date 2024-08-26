@@ -42,19 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     takerewardbtn.addEventListener('click', () => {
         //TODO: hanadle reward
         if (reward instanceof classes.Spell){
-            console.log('player picked up spell' + reward.name);
-            let spell_already_known = false;
-            knownspells.forEach(element => {
-                if(element.name===reward.name){
-                    spell_already_known = true;
-                }
-            });
-            if (spell_already_known==false){
-                knownspells.push(reward);
-                logstring += "You found a new spell, "+reward.name+"!";
-            }else{
-                logstring += "You found a new spell, but you already knew that one didn't you?";
-            }
+            //tee hee
         }else if (reward instanceof classes.Weapon){
             hero.weapon = reward;
             console.log("player picked up weapon "+reward.name);
@@ -336,7 +324,21 @@ function rewardPlayer(){
         //0-5
         let subtype = randint(0,6);
         reward = classes.Spell.getNumber(subtype);
-        // logstring = "\nYou found a spell, but you already knew that one.";
+
+        document.getElementById("overlay").style.display = "none";
+        let spell_already_known = false;
+        knownspells.forEach(element => {
+            if(element.name===reward.name){
+                spell_already_known = true;
+            }
+        });
+        if (spell_already_known==false){
+            knownspells.push(reward);
+            logstring += "\nYou found a new spell, "+reward.name+"!";
+        }else{
+            logstring += "\nYou found a new spell, but you already knew that one didn't you?";
+        }
+        
         updateUI();
         if(rewardsLeft > 0){
             rewardPlayer();
