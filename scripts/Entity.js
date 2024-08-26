@@ -12,6 +12,7 @@ export class Entity {
         this.isFrozen = false;
         this.frozenTurns = 0;
         this.url = u;
+        this.num_monsters = 6;
     }
 
     static getNumber(n){
