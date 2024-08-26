@@ -336,7 +336,7 @@ function rewardPlayer(){
         //0-5
         let subtype = randint(0,6);
         reward = classes.Spell.getNumber(subtype);
-        logstring = "\nYou found a spell, but you already knew that one.";
+        // logstring = "\nYou found a spell, but you already knew that one.";
         updateUI();
         if(rewardsLeft > 0){
             rewardPlayer();
