@@ -1,5 +1,3 @@
-// import { Spell } from './scripts/Spell.js';
-// import { Kaboom } from './scripts/Kaboom.js';
 import * as classes from './scripts/bruh.js';
 let knownspells = [];
 // knownspells.push(new classes.Bang());
