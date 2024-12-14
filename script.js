@@ -12,7 +12,7 @@ let monstersDefeated = 0;
 let playerName = "";
 let hero;
 let monsters = [];
-for(let j = 0; j < 6; j++){
+for(let j = 0; j <= 6; j++){
     monsters.push(classes.Entity.getNumber(j));
 }
 console.log(monsters);
@@ -277,7 +277,7 @@ function updateUI(outcome=0){
     }
     else if (outcome==1){
         diedMonster();
-        if(monstersDefeated == 5){
+        if(monstersDefeated == 6){
             //win the game
             playerWins();
         }else{
